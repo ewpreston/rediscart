@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block title %}Shopping Cart{% endblock %} {% block header %}Shopping Cart{% endblock %} {%
+block app_content %}
+<div class="container">
+  <header class="App-header rounded-top-4 fw-semibold">Welcome {{ name }}</header>
+  <form
+    name="cart"
+    action="{{ action_url }}"
+    method="POST"
+    class="shadow-lg p-3 mb-5 bg-body rounded-4 container position-relative"
+  >
+    <h2 class="m-1 mb-3 h2 fw-semibold text-center">Your cart</h2>
+    <div class="row mb-3 justify-content-center">
+      <span class="text-center">Is empty</span>
+    </div>
+    <h2 class="m-1 mb-3 h2 fw-semibold text-center">Items</h2>
+    <div class="row mb-3 justify-content-center">
+      <div class="col-4">
+        <label for="items" class="row-form-label">Item name:</label>
+        <select name="items" id="item-select">
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="hamster">Hamster</option>
+          <option value="parrot">Parrot</option>
+          <option value="spider">Spider</option>
+          <option value="goldfish">Goldfish</option>
+        </select>
+      </div>
+    </div>
+    <div class="row mb-3 justify-content-center">
+      <div class="col-4">
+        <label for="count" class="row-form-label">Count:</label>
+        <input type="text" class="form-control" placeholder="Count" name="count" id="count" />
+      </div>
+    </div>
+    <div class="mt-2 d-flex justify-content-center">
+      <input type="submit" class="btn btn-success" value="Add to cart" />
+    </div>
+  </form>
+</div>
+{% endblock %} {% block script %}
+<script type="application/javascript"></script>
+{% endblock %}
