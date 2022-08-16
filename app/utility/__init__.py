@@ -1,6 +1,12 @@
 import logging
 import os
 
+import redis
+
+redis_conn = redis.Redis(
+    host=os.getenv("REDIS_HOST"),
+    port=os.getenv("REDIS_PORT"))
+
 
 def init_logger(logger_name):
     global log_level
@@ -9,3 +15,4 @@ def init_logger(logger_name):
         log_level = "DEBUG"
     logging.getLogger(logger_name).setLevel(log_level)
     logging.getLogger().setLevel("INFO")
+
