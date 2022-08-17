@@ -19,6 +19,11 @@ blueprint = Blueprint("", __name__, template_folder="templates")
 
 @blueprint.route("/")
 def home():
+    return render_template("index.html")
+
+
+@blueprint.route("/rules")
+def rules():
     rules = []
     for rule in current_app.url_map.iter_rules():
         methods = ",".join(sorted(rule.methods))
@@ -29,18 +34,31 @@ def home():
         {"Content-Type": "application/json; charset=utf-8"},
     )
 
+
 @blueprint.route("/login")
 def show_login():
-    action_url = "/loginuser"
-    return render_template("login.html", action_url=action_url)
+    return login_controller.show_login()
+
+
+@blueprint.route("/logout")
+def logout():
+    return login_controller.logout_user()
+
 
 @blueprint.route("/loginuser", methods=["POST"])
 def login_user():
     return login_controller.login_user(request)
 
+
+@blueprint.route("/viewcart", methods=["GET", "POST"])
+def view_cart():
+    return cart_controller.view_cart(request, None)
+
+
 @blueprint.route("/updatecart", methods=["POST"])
 def update_cart():
     return cart_controller.update_cart(request)
+
 
 @blueprint.route("/oidclogin", methods=["GET", "POST"])
 def oidclogin():
