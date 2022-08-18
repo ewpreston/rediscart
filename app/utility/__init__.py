@@ -3,10 +3,11 @@ import os
 
 import redis
 
-redis_conn = redis.Redis(
+redis_conn = redis.StrictRedis(
     host=os.getenv("REDIS_HOST"),
     port=os.getenv("REDIS_PORT"),
-    password=os.getenv("REDIS_PASS"))
+    password=os.getenv("REDIS_PASS"),
+    charset="utf-8", decode_responses=True)
 
 
 def init_logger(logger_name):
@@ -16,4 +17,3 @@ def init_logger(logger_name):
         log_level = "DEBUG"
     logging.getLogger(logger_name).setLevel(log_level)
     logging.getLogger().setLevel("INFO")
-

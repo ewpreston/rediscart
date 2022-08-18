@@ -6,7 +6,7 @@ from flask import current_app
 from flask import request
 from flask import render_template
 
-from app.controllers import assignment_controller, rest_auth_controller, cart_controller
+from app.controllers import assignment_controller, rest_auth_controller, cart_controller, signup_controller
 from app.controllers import config_controller
 from app.controllers import launch_controller
 from app.controllers import oidc_controller
@@ -37,7 +37,7 @@ def rules():
 
 @blueprint.route("/login")
 def show_login():
-    return login_controller.show_login()
+    return login_controller.show_login(request)
 
 
 @blueprint.route("/logout")
@@ -48,6 +48,16 @@ def logout():
 @blueprint.route("/loginuser", methods=["POST"])
 def login_user():
     return login_controller.login_user(request)
+
+
+@blueprint.route("/signup")
+def show_signup():
+    return signup_controller.show_signup()
+
+
+@blueprint.route("/signupuser", methods=["POST"])
+def signup_user():
+    return signup_controller.signup_user(request)
 
 
 @blueprint.route("/viewcart", methods=["GET", "POST"])

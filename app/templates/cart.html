@@ -12,12 +12,18 @@
       <div class="row mb-3 justify-content-center">
         {% if items %}
           <table style="width: 400px">
+            <tbody>
+            <tr>
+              <th>Item</th>
+              <th>Count</th>
+            </tr>
             {% for key, value in items.items() %}
               <tr>
-                <td>{{ key.decode() }}</td>
-                <td>{{ value.decode() }}</td>
+                <td>{{ key }}</td>
+                <td>{{ value }}</td>
               </tr>
             {% endfor %}
+            </tbody>
           </table>
         {% else %}
           <span class="text-center">Is empty</span>
