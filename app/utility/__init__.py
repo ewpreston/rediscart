@@ -5,7 +5,8 @@ import redis
 
 redis_conn = redis.Redis(
     host=os.getenv("REDIS_HOST"),
-    port=os.getenv("REDIS_PORT"))
+    port=os.getenv("REDIS_PORT"),
+    password=os.getenv("REDIS_PASS"))
 
 
 def init_logger(logger_name):
