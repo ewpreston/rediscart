@@ -5,6 +5,7 @@ from app.utility import redis_conn
 
 def view_cart(request, error_msg):
     user_id = request.cookies.get("userid")
+    print(f"view_cart user_id: {user_id}")
     if not user_id:
         return redirect("/login")
 

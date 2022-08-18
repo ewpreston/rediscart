@@ -9,12 +9,11 @@ def show_login():
 def login_user(request):
     # set a cookie with user name
     name = request.form.get("name")
+    print(f"login_user name: {name}")
     resp = make_response(redirect("/viewcart"))
     resp.set_cookie(
         key="userid",
         value=name,
-        samesite="None",
-        secure=True,
         httponly=True,
     )
     return resp
